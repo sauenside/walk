@@ -1,0 +1,33 @@
+model Category {
+  id            String     @id @default(nanoid())
+
+  parentId      String?
+  parent        Category?  @relation("CategoryTree", fields: [parentId], references: [id], onDelete: Restrict)
+  children      Category[] @relation("CategoryTree")
+
+  slug          String     @unique
+
+  nameKk        String
+  nameRu        String
+  nameEn        String
+
+  descriptionKk String?
+  descriptionRu String?
+  descriptionEn String?
+
+  isActive      Boolean    @default(true)
+  isEnabled     Boolean    @default(true)
+
+  position      Int
+
+  mediaType     MediaType  @default(NONE)
+  pictureId     String?
+  picture       Picture?   @relation(fields: [pictureId], references: [id], onDelete: Restrict)
+  emoji         String?
+
+  createdAt     DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime   @updatedAt @db.Timestamptz(6)
+
+  @@index([parentId, position])
+  @@index([pictureId])
+}

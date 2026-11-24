@@ -1,0 +1,30 @@
+.field {
+  display: grid;
+  gap: 5px;
+}
+
+/* Подпись слева, поле справа */
+.field-inline {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+/* Подпись и, если есть, элемент справа от неё — в одну строку */
+.field-head {
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.field-label {
+  color: var(--label-2);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.field-hint {
+  color: var(--label-2);
+  font-size: 12px;
+}

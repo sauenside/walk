@@ -1,0 +1,9 @@
+/* Поля одного языка: тот же шаг, что между полями формы */
+.localized-fields-lang {
+  display: grid;
+  gap: 20px;
+}
+
+.localized-fields-lang[hidden] {
+  display: none;
+}

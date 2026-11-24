@@ -1,0 +1,136 @@
+/* fixed + inset — согласованное исключение, как у модального окна: уведомление держится у верхнего края поверх всего.
+   Слой во всю ширину не ловит клики — их ловит только сама капсула */
+.toaster {
+  display: grid;
+
+  justify-items: center;
+
+  pointer-events: none;
+
+  position: fixed;
+  inset: max(10px, env(safe-area-inset-top, 0px)) 10px auto 10px;
+  z-index: 50;
+}
+
+/* Капсула: ширину и высоту задаёт компонент по размеру содержимого, переход делает «перетекание» */
+.island {
+  display: grid;
+
+  align-items: start;
+  justify-items: center;
+
+  background: var(--window);
+  border: 1px solid var(--separator);
+  border-radius: 25px;
+
+  opacity: 0;
+  transition:
+    width 0.45s cubic-bezier(0.3, 1.25, 0.5, 1),
+    height 0.45s cubic-bezier(0.3, 1.25, 0.5, 1),
+    opacity 0.2s ease;
+  pointer-events: auto;
+
+  overflow: hidden;
+}
+
+.island.is-open {
+  opacity: 1;
+}
+
+/* Содержимое своего размера: капсула вокруг него растёт и сжимается, лишнее обрезается */
+.island-content {
+  width: max-content;
+
+  padding: 10px 15px;
+
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: auto minmax(0px, 1fr) auto;
+  align-items: start;
+
+  animation: island-content-in 0.3s ease 0.1s both;
+}
+
+@keyframes island-content-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.island:not(.is-open) .island-content {
+  opacity: 0;
+
+  transition: opacity 0.15s ease;
+}
+
+/* Иконка и крестик высотой в строку заголовка — всё выровнено по первой строке */
+.island-icon {
+  display: grid;
+
+  grid-template-rows: 20px;
+  place-items: center;
+}
+
+.island-icon-error {
+  color: var(--red);
+}
+
+.island-icon-warning {
+  color: var(--red);
+}
+
+.island-icon-success {
+  color: var(--blue);
+}
+
+.island-icon-info {
+  color: var(--accent);
+}
+
+.island-close.icon-button {
+  grid-template-columns: 20px;
+  grid-template-rows: 20px;
+}
+
+.island-text {
+  display: grid;
+  gap: 5px;
+}
+
+.island-title {
+  color: var(--label);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.island-note,
+.island-items {
+  color: var(--label-2);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Список: маркер — первая колонка сетки */
+.island-items {
+  display: grid;
+}
+
+.island-item {
+  display: grid;
+  gap: 5px;
+
+  grid-template-columns: auto 1fr;
+}
+
+.island-item::before {
+  content: "•";
+}
+
+.island-actions {
+  display: grid;
+  gap: 10px;
+
+  grid-auto-flow: column;
+  justify-content: start;
+}

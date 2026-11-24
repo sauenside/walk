@@ -1,0 +1,18 @@
+/* Поле страницы под шапкой: та же ширина, что у содержимого шапки, блоки друг под другом */
+/* Колонка содержимого не шире 1310px (1340 вместе с отступами по 15px) и стоит по центру */
+.page {
+  /* Сверху и снизу поровну; по бокам — не меньше выреза экрана (единственное место с четырьмя значениями) */
+  padding: 30px max(15px, env(safe-area-inset-right, 0px)) 30px max(15px, env(safe-area-inset-left, 0px));
+
+  display: grid;
+  gap: 20px;
+
+  grid-template-columns: minmax(0px, 1310px);
+  justify-content: center;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 20px max(15px, env(safe-area-inset-right, 0px)) 20px max(15px, env(safe-area-inset-left, 0px));
+  }
+}

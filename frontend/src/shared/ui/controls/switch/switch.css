@@ -1,0 +1,43 @@
+/* Ползунок в сетке переключателя, движение только через transform */
+/* 35px дорожки + отступы по 5px = 45px, высота 25px */
+.switch {
+  padding: 0px 5px;
+
+  display: grid;
+
+  grid-template-columns: 35px;
+  grid-template-rows: 25px;
+  align-items: center;
+  justify-items: start;
+
+  background: var(--switch-off);
+  border-radius: var(--radius-pill);
+
+  transition: background 0.2s;
+}
+
+.switch.is-on {
+  background: var(--blue);
+}
+
+.switch:disabled {
+  background: var(--fill-2);
+
+  cursor: not-allowed;
+}
+
+.switch-knob {
+  display: grid;
+
+  grid-template-columns: 15px;
+  grid-template-rows: 15px;
+
+  background: #fff;
+  border-radius: 50%;
+
+  transition: transform 0.2s cubic-bezier(0.3, 0.9, 0.3, 1.2);
+}
+
+.switch.is-on .switch-knob {
+  transform: translateX(20px);
+}

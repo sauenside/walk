@@ -1,0 +1,26 @@
+.resource-page-empty {
+  color: var(--label-3);
+  text-align: center;
+
+  padding: 50px 15px;
+
+  display: grid;
+  gap: 10px;
+
+  justify-items: center;
+}
+
+.resource-page-empty-title {
+  color: var(--label);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Пояснение не шире 360px */
+.resource-page-empty-text {
+  color: var(--label-2);
+
+  display: grid;
+
+  grid-template-columns: minmax(0px, 360px);
+}

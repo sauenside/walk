@@ -1,0 +1,63 @@
+/* ---------- Меню фильтров ---------- */
+
+.resource-filter-menu {
+  display: grid;
+
+  grid-template-columns: minmax(0px, 290px);
+}
+
+.resource-filter-reset {
+  color: var(--accent);
+  font-weight: 500;
+  text-align: left;
+
+  padding: 5px 10px;
+
+  /* Как у пункта меню: пустая колонка 15px, текст под подписями */
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: 15px 1fr;
+
+  background: none;
+  border-radius: 5px;
+}
+
+.resource-filter-reset::before {
+  content: "";
+}
+
+.resource-filter-reset:hover {
+  background: var(--accent-soft);
+}
+
+/* ---------- Меню «Действия» ---------- */
+
+/* 250px содержимого + отступы по 10px = 270px */
+.resource-delete-confirm {
+  padding: 10px;
+
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: minmax(0px, 250px);
+}
+
+.resource-delete-confirm-actions {
+  display: grid;
+  gap: 5px;
+
+  grid-auto-flow: column;
+  justify-content: end;
+}
+
+/* ---------- Таблица ---------- */
+
+.resource-table-pending {
+  color: var(--label-3);
+
+  display: grid;
+
+  grid-template-rows: minmax(120px, auto);
+  place-items: center;
+}

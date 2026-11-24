@@ -1,0 +1,23 @@
+.visibility-status-cell {
+  display: grid;
+}
+
+.visibility-status {
+  white-space: nowrap;
+
+  display: grid;
+  gap: 5px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.visibility-status-hidden {
+  color: var(--label-2);
+}
+
+.visibility-status-note {
+  color: var(--red-text);
+  font-size: 11px;
+}

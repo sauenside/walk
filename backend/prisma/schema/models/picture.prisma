@@ -1,0 +1,18 @@
+model Picture {
+  id          String        @id @default(nanoid())
+
+  key         String        @unique
+  contentType String
+  size        Int?
+  width       Int
+  height      Int
+
+  status      PictureStatus @default(PENDING)
+
+  categories  Category[]
+
+  createdAt   DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime      @updatedAt @db.Timestamptz(6)
+
+  @@index([status, createdAt])
+}

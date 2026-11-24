@@ -1,0 +1,22 @@
+/* Пустая сетка с одной ячейкой 10×10: размер точки */
+.dot {
+  display: grid;
+
+  grid-template-columns: 10px;
+  grid-template-rows: 10px;
+
+  border-radius: 50%;
+}
+
+.dot-success {
+  background: var(--blue);
+}
+
+.dot-warning {
+  background: var(--red);
+}
+
+/* Серое кольцо 2px с белой серединой, нарисованное фоном: точка остаётся 10×10 */
+.dot-muted {
+  background: radial-gradient(circle closest-side, var(--window) 60%, var(--gray) 60%);
+}

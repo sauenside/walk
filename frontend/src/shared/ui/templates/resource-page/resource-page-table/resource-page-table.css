@@ -1,0 +1,94 @@
+.resource-page-table {
+  background: var(--window);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-card);
+
+  overflow: hidden;
+}
+
+/* Таблица не уже своей минимальной ширины: на узком экране прокручивается вбок */
+.resource-page-table-scroll {
+  padding: 5px;
+
+  display: grid;
+
+  grid-template-columns: minmax(var(--resource-table-min-width), 1fr);
+
+  overflow-x: auto;
+}
+
+.resource-table {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Строка не ниже 50px */
+.resource-table-row {
+  display: grid;
+
+  grid-template-columns: var(--resource-table-columns);
+  grid-template-rows: minmax(50px, auto);
+  align-items: center;
+
+  border-radius: 10px;
+
+  transition: background 0.12s;
+}
+
+/* :where() держит специфичность низкой: таблица конкретного ресурса легко переопределяет фон строк */
+:where(.resource-table.is-striped) :where(.resource-table-row:nth-child(odd)) {
+  background: var(--zebra);
+}
+
+:where(.resource-table-row:not(.resource-table-head)):hover {
+  background: var(--fill-2);
+}
+
+.resource-table-head {
+  color: var(--label-2);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  grid-template-rows: minmax(35px, auto);
+
+  /* Линия снизу фоном, а не рамкой: строка остаётся ровно 35px */
+  background: linear-gradient(var(--separator), var(--separator)) bottom / 100% 1px no-repeat;
+  border-radius: 0px;
+}
+
+.resource-table-cell {
+  padding: 5px 10px;
+}
+
+.resource-table-cell-end {
+  text-align: right;
+}
+
+.resource-table-cell-center {
+  padding: 0px;
+
+  display: grid;
+
+  align-self: stretch;
+  place-items: center;
+}
+
+.resource-table-cell-muted {
+  color: var(--label-2);
+  white-space: nowrap;
+}
+
+/* Телефон: колонки «только на десктопе» скрыты, сетка и ширина — свои, строка короче */
+@media (max-width: 560px) {
+  .resource-page-table-scroll {
+    grid-template-columns: minmax(var(--resource-table-min-width-mobile), 1fr);
+  }
+
+  .resource-table-row {
+    grid-template-columns: var(--resource-table-columns-mobile);
+  }
+
+  .resource-table-cell-desktop {
+    display: none;
+  }
+}

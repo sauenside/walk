@@ -1,0 +1,6 @@
+/* Фон, рамка, фокус и ошибка — общие, в text-box.css */
+.textarea {
+  padding: 5px 10px;
+
+  resize: vertical;
+}

@@ -1,0 +1,38 @@
+.media-thumb {
+  color: var(--label-3);
+
+  display: grid;
+
+  place-items: center;
+
+  background: var(--fill-2) center / cover no-repeat;
+
+  overflow: hidden;
+}
+
+.media-thumb-sm {
+  font-size: 16px;
+
+  grid-template-columns: 25px;
+  grid-template-rows: 25px;
+
+  border-radius: 5px;
+}
+
+.media-thumb-md {
+  font-size: 26px;
+
+  grid-template-columns: 45px;
+  grid-template-rows: 45px;
+
+  border-radius: 10px;
+}
+
+.media-thumb-lg {
+  font-size: 40px;
+
+  grid-template-columns: 70px;
+  grid-template-rows: 70px;
+
+  border-radius: 15px;
+}

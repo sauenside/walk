@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/*
+  Светлое окно macOS без стекла.
+  Правила CSS: единицы только px и %, шаг 5, ноль тоже с px; только сокращённые margin и padding; без grid-column.
+  Исключения по технической необходимости: размеры шрифтов, толщина линий и колец фокуса 1–3px,
+  fr в сетках, время анимаций, deg/scale в transform, position: fixed + inset у слоя уведомлений и выезжающей панели на телефоне.
+*/
+:root {
+  --bg: #f5f5f7;
+  --window: #ffffff;
+  --label: #1d1d1f;
+  --label-2: #6e6e73;
+  --label-3: #a1a1a6;
+  --separator: #dad8d8;
+  --border: #d2d2d7;
+  --fill: #e8e8ed;
+  --fill-2: #f2f2f5;
+  --zebra: #fafafb;
+  --accent: #504976;
+  /* Оттенки акцента: темнее — смешан с чёрным на 15%, светлее — с белым (7%, 14%, 30%, 55% акцента) */
+  --accent-hover: #443e64;
+  --accent-soft: #f3f2f5;
+  --accent-soft-2: #e7e6ec;
+  --accent-border: #cbc8d6;
+  --accent-ring: #9f9bb4;
+  --blue: #417eda;
+  --gray: #8e8e93;
+  --red: #ff0000;
+  --red-hover: #d11208;
+  --switch-off: #e3e3e8;
+  --tree-line: #c7c7cc;
+  --group-head: #ededf1;
+  --group-body: #f8f8fa;
+  /* Единственный полупрозрачный цвет: затемнение под выезжающей панелью на телефоне */
+  --overlay: rgba(29, 29, 31, 0.3);
+
+  --font:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI",
+    system-ui, sans-serif;
+  --font-mono:
+    "SF Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --radius-window: 20px;
+  --radius-card: 15px;
+  --radius-field: 10px;
+  --radius-pill: 100px;
+
+  color-scheme: light;
+}

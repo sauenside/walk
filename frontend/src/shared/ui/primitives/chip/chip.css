@@ -1,0 +1,35 @@
+.chip {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  padding: 0px 10px;
+
+  display: grid;
+  gap: 5px;
+
+  grid-template-rows: 25px;
+  grid-auto-flow: column;
+  align-items: center;
+
+  background: var(--accent-soft);
+  border-radius: var(--radius-pill);
+}
+
+.chip button {
+  padding: 0px;
+
+  display: grid;
+
+  grid-template-columns: 20px;
+  grid-template-rows: 20px;
+  place-items: center;
+
+  background: none;
+  border-radius: 50%;
+}
+
+.chip button:hover {
+  background: var(--accent-soft-2);
+}

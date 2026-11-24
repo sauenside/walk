@@ -1,0 +1,33 @@
+.icon-button {
+  color: var(--label-2);
+
+  padding: 0px;
+
+  display: grid;
+
+  grid-template-columns: 30px;
+  grid-template-rows: 30px;
+  place-items: center;
+
+  background: var(--fill-2);
+  border-radius: 50%;
+
+  transition: background 0.15s, color 0.15s;
+}
+
+.icon-button:hover:not(:disabled) {
+  color: var(--label);
+
+  background: var(--fill);
+}
+
+.icon-button:disabled {
+  color: var(--label-3);
+}
+
+.icon-button-sm {
+  grid-template-columns: 25px;
+  grid-template-rows: 25px;
+
+  background: none;
+}

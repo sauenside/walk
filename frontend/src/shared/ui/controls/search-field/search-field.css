@@ -1,0 +1,59 @@
+.search-field {
+  padding: 0px 15px;
+
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: auto minmax(0px, 1fr) auto;
+  grid-template-rows: 35px;
+  align-items: center;
+
+  background: var(--window);
+  border-radius: var(--radius-pill);
+  outline: 1px solid var(--border);
+
+  transition: outline-color 0.15s;
+}
+
+.search-field:focus-within {
+  outline: 1px solid var(--accent);
+}
+
+.search-field-icon {
+  color: var(--label-3);
+}
+
+/* Поле на всю высоту строки: клик в любом месте капсулы попадает в него */
+.search-field input {
+  padding: 0px;
+
+  align-self: stretch;
+
+  background: none;
+  outline: none;
+  appearance: none;
+}
+
+.search-field input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-field input::placeholder {
+  color: var(--label-3);
+}
+
+.search-field-clear {
+  color: var(--label-3);
+
+  padding: 0px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: none;
+}
+
+.search-field-clear:hover {
+  color: var(--label-2);
+}

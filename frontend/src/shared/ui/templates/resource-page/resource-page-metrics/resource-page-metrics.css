@@ -1,0 +1,48 @@
+/* Метрики в одну строку; не помещаются — прокручиваются по горизонтали, страница при этом не расширяется */
+.resource-page-metrics {
+  display: grid;
+  gap: 15px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+
+  /* Только по горизонтали: барабаны цифр не должны давать вертикальную прокрутку */
+  overflow: auto hidden;
+}
+
+/* Каждая метрика — отдельный овал */
+.metric {
+  color: var(--label);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+
+  padding: 0px 10px;
+
+  display: grid;
+  gap: 5px;
+
+  grid-template-rows: 30px;
+  grid-auto-flow: column;
+  align-items: center;
+
+  background: var(--window);
+  border-radius: var(--radius-pill);
+  outline: 1px solid var(--separator);
+}
+
+.metric-value {
+  font-weight: 600;
+}
+
+.metric-label {
+  color: var(--label-2);
+}
+
+.metric-icon {
+  color: var(--label-3);
+
+  display: grid;
+
+  place-items: center;
+}

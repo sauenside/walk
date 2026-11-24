@@ -1,0 +1,14 @@
+/* Фон, рамка, фокус и ошибка — общие, в text-box.css */
+.input {
+  height: 30px;
+
+  padding: 0px 10px;
+}
+
+/* Два класса: перевешивает width: 100% общего оформления независимо от порядка стилей */
+.input.input-compact {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+
+  width: 80px;
+}

@@ -1,0 +1,5 @@
+enum MediaType {
+  NONE
+  PICTURE
+  EMOJI
+}

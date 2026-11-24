@@ -1,0 +1,91 @@
+.category-grid-pending {
+  color: var(--label-3);
+
+  display: grid;
+
+  grid-template-rows: minmax(200px, auto);
+  place-items: center;
+}
+
+.category-grid {
+  display: grid;
+  gap: 15px;
+
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.category-card {
+  padding: 20px;
+
+  display: grid;
+  gap: 10px;
+
+  align-content: start;
+
+  background: var(--window);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-card);
+}
+
+.category-card.is-disabled {
+  color: var(--label-3);
+}
+
+.category-card-head {
+  display: grid;
+
+  grid-template-columns: auto 1fr;
+  align-items: start;
+}
+
+.category-card-soon {
+  color: var(--label-2);
+  font-size: 12px;
+  font-weight: 600;
+
+  padding: 0px 10px;
+
+  justify-self: end;
+
+  background: var(--fill-2);
+  border-radius: var(--radius-pill);
+}
+
+.category-card-name {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.category-card-description {
+  color: var(--label-2);
+}
+
+.category-card.is-disabled .category-card-description {
+  color: var(--label-3);
+}
+
+.category-card-children {
+  display: grid;
+  gap: 5px;
+}
+
+.category-card-child {
+  display: grid;
+  gap: 5px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.category-card-child.is-disabled {
+  color: var(--label-3);
+}
+
+.category-card-child-emoji {
+  text-align: center;
+
+  display: grid;
+
+  grid-template-columns: 20px;
+}

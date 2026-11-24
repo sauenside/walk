@@ -1,0 +1,288 @@
+/* Открытое меню перекрывает всё, что ниже; относительно .dropdown встаёт якорь меню */
+.dropdown {
+  display: grid;
+
+  position: relative;
+}
+
+.dropdown.is-open {
+  z-index: 30;
+}
+
+.dropdown-button {
+  white-space: nowrap;
+
+  padding: 0px 10px;
+
+  display: grid;
+  gap: 5px;
+
+  /* Высота — строка 30px; рамка outline внутрь и размер не меняет */
+  grid-template-rows: 30px;
+  grid-auto-flow: column;
+  align-items: center;
+
+  background: var(--window);
+  border-radius: var(--radius-pill);
+  outline: 1px solid var(--border);
+
+  transition:
+    background 0.15s,
+    color 0.15s,
+    outline-color 0.15s;
+}
+
+.dropdown-button:hover:not(:disabled),
+.dropdown-button.is-open {
+  background: var(--fill-2);
+}
+
+.dropdown-button:disabled {
+  color: var(--label-3);
+
+  background: var(--fill-2);
+  outline: 1px solid var(--separator);
+}
+
+.dropdown-button.has-value {
+  color: var(--accent);
+
+  background: var(--accent-soft);
+}
+
+/* Рамки модификаторов через :where(): специфичность как у одного класса, кольцо фокуса их перебивает */
+.dropdown-button:where(.has-value) {
+  outline: 1px solid var(--accent-border);
+}
+
+.dropdown-label {
+  font-weight: 500;
+}
+
+.dropdown-chevron {
+  color: var(--label-3);
+
+  transition: transform 0.15s;
+}
+
+.dropdown-button.is-open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-badge {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+
+  padding: 0px 5px;
+
+  display: grid;
+
+  /* Не уже 20px вместе с отступами, высота 20px */
+  grid-template-columns: minmax(10px, auto);
+  grid-template-rows: 20px;
+  place-items: center;
+
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.dropdown-compact .dropdown-button {
+  font-size: 12px;
+
+  padding: 0px 10px;
+
+  grid-template-rows: 25px;
+
+  background: var(--fill-2);
+}
+
+.dropdown-compact :where(.dropdown-button) {
+  outline: 1px solid var(--fill-2);
+}
+
+.dropdown-block .dropdown-button {
+  grid-template-columns: minmax(0px, 1fr) auto;
+  grid-auto-flow: row;
+
+  background: var(--fill-2);
+  border-radius: var(--radius-field);
+}
+
+.dropdown-block :where(.dropdown-button) {
+  outline: 1px solid var(--fill-2);
+}
+
+.dropdown-block .dropdown-label {
+  text-align: left;
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+}
+
+/*
+  Якорь под кнопкой вне раскладки: не расширяет кнопку и не сдвигает ничего вокруг.
+  Его колонка 320px — самое широкое меню; меню внутри по своему содержимому, но не шире колонки
+*/
+.dropdown-anchor {
+  display: grid;
+
+  grid-template-columns: 320px;
+  align-items: start;
+
+  position: absolute;
+  top: 100%;
+}
+
+.dropdown-anchor-start {
+  justify-items: start;
+
+  left: 0px;
+}
+
+/* Меню прижато к правому краю кнопки и растёт влево */
+.dropdown-anchor-end {
+  justify-items: end;
+
+  right: 0px;
+}
+
+/* Меню во всю ширину кнопки */
+.dropdown-block .dropdown-anchor {
+  grid-template-columns: minmax(0px, 1fr);
+  justify-items: stretch;
+
+  right: 0px;
+  left: 0px;
+}
+
+/* min-width — единственный нижний предел, который сеткой не выразить: колонка якоря задаёт только верхний */
+.dropdown-menu {
+  min-width: 240px;
+
+  padding: 5px;
+
+  display: grid;
+
+  grid-template-columns: minmax(0px, 1fr);
+
+  background: var(--window);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  transform-origin: top;
+  /* Меню висит в якоре нулевой высоты; сдвиг на 5px вниз не меняет раскладку под ним */
+  translate: 0px 5px;
+  animation: dropdown-in 0.14s ease-out;
+}
+
+@keyframes dropdown-in {
+  from {
+    transform: scale(0.97) translateY(-5px);
+  }
+}
+
+/* Та же сетка, что у пункта: пустая первая колонка, текст — под подписями пунктов */
+.menu-section {
+  color: var(--label-3);
+  font-size: 11px;
+  font-weight: 600;
+
+  padding: 5px 10px;
+
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: 15px 1fr;
+}
+
+.menu-section::before {
+  content: "";
+}
+
+/* Линия 1px: строка 1px, фон только под содержимым, поля по краям — padding */
+.menu-separator {
+  padding: 5px 10px;
+
+  display: grid;
+
+  grid-template-rows: 1px;
+
+  background: var(--separator) content-box;
+}
+
+/* Колонки: галочка или иконка, текст, подсказка справа; отступы между ними задаёт gap */
+.menu-item {
+  text-align: left;
+
+  padding: 5px 10px;
+
+  display: grid;
+  gap: 10px;
+
+  /* Не ниже 30px вместе с отступами */
+  grid-template-columns: 15px minmax(0px, 1fr) auto;
+  grid-template-rows: minmax(20px, auto);
+  align-items: center;
+
+  background: none;
+  border-radius: 5px;
+}
+
+.menu-item:hover:not(:disabled),
+.menu-item:focus-visible {
+  color: #fff;
+
+  background: var(--accent);
+  outline: none;
+}
+
+.menu-item:disabled {
+  color: var(--label-3);
+}
+
+.menu-item-danger {
+  color: var(--red);
+}
+
+.menu-item-danger:hover:not(:disabled) {
+  background: var(--red);
+}
+
+.menu-item-check {
+  display: grid;
+
+  place-items: center;
+}
+
+.menu-item-label {
+  display: grid;
+  gap: 5px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.menu-item-hint {
+  color: var(--label-3);
+  font-size: 11px;
+}
+
+.menu-item:hover:not(:disabled) .menu-item-hint {
+  color: var(--accent-soft);
+}
+
+/* Строка по содержимому, но не выше 170px: длиннее — список внутри прокручивается */
+.menu-scroll {
+  display: grid;
+
+  grid-template-columns: minmax(0px, 1fr);
+  grid-template-rows: fit-content(170px);
+}
+
+.menu-scroll-list {
+  display: grid;
+
+  overflow-y: auto;
+}

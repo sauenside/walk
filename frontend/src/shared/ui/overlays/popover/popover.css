@@ -1,0 +1,63 @@
+/* Колонка по ширине кнопки, но не шире места: длинное название обрезается многоточием */
+.popover {
+  display: grid;
+
+  grid-template-columns: minmax(0px, max-content);
+
+  position: relative;
+}
+
+.popover.is-open {
+  z-index: 30;
+}
+
+/* Кнопка без своего оформления: выглядит так, как то, что в неё положили */
+.popover-trigger {
+  text-align: left;
+
+  padding: 0px;
+
+  background: none;
+}
+
+/* Якорь под кнопкой вне раскладки; колонка 320px — самая широкая карточка, карточка внутри по тексту */
+.popover-anchor {
+  display: grid;
+
+  grid-template-columns: 320px;
+  align-items: start;
+  justify-items: start;
+
+  position: absolute;
+  top: 100%;
+  left: 0px;
+}
+
+.popover-card {
+  color: var(--label-2);
+  font-size: 13px;
+  font-weight: 400;
+
+  padding: 10px 15px;
+
+  background: var(--window);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  transform-origin: top left;
+  translate: 0px 5px;
+  animation: popover-in 0.14s ease-out;
+}
+
+/* Телефон: карточка не выходит за край экрана */
+@media (max-width: 560px) {
+  .popover-anchor {
+    grid-template-columns: 260px;
+  }
+}
+
+@keyframes popover-in {
+  from {
+    transform: scale(0.97) translateY(-5px);
+  }
+}

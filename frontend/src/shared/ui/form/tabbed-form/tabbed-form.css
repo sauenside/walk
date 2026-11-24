@@ -1,0 +1,74 @@
+/* Колонка формы по центру страницы: шире не нужно, строки полей читаются одним взглядом */
+.tabbed-form {
+  display: grid;
+  gap: 20px;
+
+  grid-template-columns: minmax(0px, 680px);
+  justify-content: center;
+}
+
+/* Вкладки не помещаются на узком экране: листаются вбок, а не растягивают форму */
+.tabbed-form > .tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabbed-form-head {
+  display: grid;
+  gap: 15px;
+
+  grid-template-columns: auto minmax(0px, 1fr);
+  align-items: center;
+}
+
+.tabbed-form-heading {
+  display: grid;
+}
+
+.tabbed-form-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.tabbed-form-subtitle {
+  color: var(--label-2);
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+}
+
+/* Вкладка — белая карточка с полями */
+.tabbed-form-panel {
+  padding: 20px;
+
+  display: grid;
+  gap: 20px;
+
+  background: var(--window);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-card);
+}
+
+/* Неоткрытая вкладка остаётся в DOM, чтобы её поля не теряли значения и ошибки */
+.tabbed-form-panel[hidden] {
+  display: none;
+}
+
+/* Кнопки внизу: панель липнет к низу экрана, пока форма длиннее экрана; фон закрывает поля под ней */
+.tabbed-form-footer {
+  padding: 15px 0px max(15px, env(safe-area-inset-bottom, 0px));
+
+  display: grid;
+  gap: 10px;
+
+  grid-auto-flow: column;
+  justify-content: end;
+
+  background: var(--bg);
+  border-top: 1px solid var(--separator);
+
+  position: sticky;
+  bottom: 0px;
+}

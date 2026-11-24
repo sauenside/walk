@@ -1,0 +1,9 @@
+.resource-page-actions {
+  display: grid;
+  gap: 15px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}
+

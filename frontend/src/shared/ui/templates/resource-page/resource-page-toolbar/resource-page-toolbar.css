@@ -1,0 +1,38 @@
+.resource-page-toolbar {
+  display: grid;
+  gap: 10px;
+}
+
+.resource-page-toolbar-controls {
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: auto minmax(0px, 1fr) auto;
+  align-items: center;
+}
+
+.toolbar-chips {
+  display: grid;
+  gap: 5px 10px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+
+  overflow-x: auto;
+}
+
+.toolbar-chips-summary {
+  color: var(--label-2);
+  font-size: 12px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* На телефоне у меню тулбара остаются только иконки, поиск получает всю ширину */
+@media (max-width: 560px) {
+  .resource-page-toolbar-controls .dropdown-label,
+  .resource-page-toolbar-controls .dropdown-chevron {
+    display: none;
+  }
+}

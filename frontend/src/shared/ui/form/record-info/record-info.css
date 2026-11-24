@@ -1,0 +1,32 @@
+.record-info {
+  padding: 15px;
+
+  display: grid;
+  gap: 10px 15px;
+
+  grid-template-columns: auto minmax(0px, 1fr);
+
+  background: var(--window);
+  border: 1px solid var(--separator);
+  border-radius: 10px;
+}
+
+/* Строка не создаёт своей коробки: подпись и значение встают в общую сетку из двух колонок */
+.record-info-row {
+  display: contents;
+}
+
+.record-info-label {
+  color: var(--label-2);
+}
+
+.record-info-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.record-info-value.is-mono {
+  font-size: 12px;
+  font-family: var(--font-mono);
+}

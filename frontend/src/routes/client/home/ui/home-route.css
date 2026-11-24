@@ -1,0 +1,33 @@
+/* Колонка содержимого не шире 1310px (1340 вместе с отступами) и стоит по центру */
+.home-route {
+  padding: 30px max(15px, env(safe-area-inset-right, 0px)) 30px max(15px, env(safe-area-inset-left, 0px));
+
+  display: grid;
+  gap: 20px;
+
+  grid-template-columns: minmax(0px, 1310px);
+  justify-content: center;
+}
+
+.home-route-header {
+  display: grid;
+  gap: 15px;
+
+  grid-template-columns: 1fr auto;
+  align-items: start;
+}
+
+.home-route-heading {
+  display: grid;
+  gap: 5px;
+}
+
+.home-route-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.home-route-description {
+  color: var(--label-2);
+  font-size: 14px;
+}

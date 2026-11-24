@@ -1,0 +1,17 @@
+.visibility-settings {
+  display: grid;
+  gap: 15px;
+}
+
+/* «Сейчас для покупателей: ● Доступна» */
+.visibility-settings-summary {
+  color: var(--label-2);
+  font-size: 12px;
+
+  display: grid;
+  gap: 10px;
+
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: start;
+}

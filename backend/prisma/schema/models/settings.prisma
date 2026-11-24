@@ -1,0 +1,11 @@
+// Настройки сайта: одна строка с постоянным id
+model Settings {
+  id             Int      @id @default(1)
+
+  // Языки витрины: только они видны в переключателе
+  enabledLocales Locale[] @default([kk, ru, en])
+  // Язык, на котором сайт открывается; всегда среди включённых
+  defaultLocale  Locale   @default(ru)
+
+  updatedAt      DateTime @updatedAt @db.Timestamptz(6)
+}

@@ -1,0 +1,175 @@
+/*
+  Барабаны игрового автомата. Размеры совпадают с константами в slot-number.config.ts:
+  ячейка 20px — высота строки, окошко 30px — полторы строки, барабан 10px — ширина табличной цифры с запасом.
+*/
+
+.slot-number {
+  font-variant-numeric: tabular-nums;
+
+  display: inline-grid;
+
+  grid-auto-flow: column;
+  align-items: center;
+
+  position: relative;
+}
+
+.slot-reels {
+  display: grid;
+
+  grid-auto-flow: column;
+}
+
+/* Барабан — одна ячейка 10×20 */
+.slot-reel {
+  display: grid;
+
+  grid-template-columns: 10px;
+  grid-template-rows: 20px;
+
+  transition:
+    grid-template-columns 0.7s ease,
+    opacity 0.7s ease;
+}
+
+/* Появление и уход: колонка с нуля или до нуля */
+.slot-reel.is-collapsed {
+  grid-template-columns: 0px;
+
+  opacity: 0;
+}
+
+/*
+  Окошко шире цифры на 10px: растянуто по колонке барабана, отрицательные отступы по бокам добавляют по 5px,
+  чтобы свечение не обрезалось. Высота — своя строка 30px; прижато к верху и поднято отступом
+*/
+.slot-window {
+  margin: -7.05px -5px;
+
+  display: grid;
+
+  grid-template-rows: 30px;
+  align-items: start;
+  align-self: start;
+
+  /* overflow: hidden; */
+
+  /* Цифры растворяются у верхнего и нижнего края, цифра в покое (от 9 до 21px) не задевается */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 30%,
+    black 70%,
+    transparent 100%
+  );
+}
+
+/* Лента цифр: каждая цифра — строка 20px (SLOT_CELL_HEIGHT), цифра по центру строки */
+.slot-tape {
+  text-align: center;
+
+  display: grid;
+
+  grid-auto-rows: 20px;
+  align-items: center;
+
+  will-change: transform;
+}
+
+/*
+  До запуска JS: разгон до полной скорости, затем бесконечная прокрутка с той же точки.
+  Разгон стоит вторым и пока идёт, перекрывает прокрутку; без fill-mode после конца он снимается.
+  Все значения приходят переменными из slot-prerender.ts, где они считаются из настроек
+*/
+.slot-reel.is-prerender .slot-tape {
+  animation:
+    slot-loop var(--slot-loop) linear var(--slot-loop-delay) infinite,
+    slot-spin-up var(--slot-accel) cubic-bezier(0.42, 0, 0.58, 0.16);
+}
+
+@keyframes slot-loop {
+  0% {
+    transform: translate3d(0px, var(--slot-loop-from), 0px);
+  }
+
+  100% {
+    transform: translate3d(0px, var(--slot-loop-to), 0px);
+  }
+}
+
+@keyframes slot-spin-up {
+  0% {
+    transform: translate3d(0px, var(--slot-from), 0px);
+  }
+
+  100% {
+    transform: translate3d(0px, var(--slot-to), 0px);
+  }
+}
+
+/* Анимации выключены в системе: серверные барабаны не показываем, до запуска JS — прочерк */
+@media (prefers-reduced-motion: reduce) {
+  .slot-reel.is-prerender {
+    display: none;
+  }
+
+  .slot-reels:has(> .is-prerender) + .slot-dash {
+    display: block;
+  }
+}
+
+.slot-reel.is-glowing .slot-tape {
+  animation: slot-glow 3s ease-out;
+}
+
+/* Тот же набор слоёв во всех кадрах: иначе тень не интерполируется и мигает */
+@keyframes slot-glow {
+  0% {
+    text-shadow:
+      0px 0px 5px transparent,
+      0px 0px 10px transparent;
+  }
+
+  15% {
+    text-shadow:
+      0px 0px 5px var(--accent),
+      0px 0px 10px var(--accent);
+  }
+
+  100% {
+    text-shadow:
+      0px 0px 5px transparent,
+      0px 0px 10px transparent;
+  }
+}
+
+.slot-dash {
+  display: none;
+}
+
+.slot-number.is-dash .slot-dash {
+  display: block;
+
+  animation: slot-fade 0.4s ease;
+}
+
+.slot-fade {
+  animation: slot-fade 0.4s ease;
+}
+
+@keyframes slot-fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

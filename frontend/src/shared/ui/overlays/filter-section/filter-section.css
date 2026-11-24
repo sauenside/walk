@@ -1,0 +1,63 @@
+.filter-section {
+  display: grid;
+}
+
+.filter-section + .filter-section {
+  border-top: 1px solid var(--separator);
+}
+
+.filter-section-head {
+  text-align: left;
+
+  padding: 5px 10px;
+
+  display: grid;
+  gap: 5px;
+
+  /* Не ниже 35px вместе с отступами */
+  grid-template-columns: 20px auto minmax(0px, 1fr);
+  grid-template-rows: minmax(25px, auto);
+  align-items: center;
+
+  background: none;
+  border-radius: 5px;
+}
+
+.filter-section-head:hover {
+  background: var(--fill-2);
+}
+
+.filter-section-chevron {
+  color: var(--label-3);
+
+  justify-self: center;
+
+  transition: transform 0.15s;
+}
+
+.filter-section.is-open .filter-section-chevron {
+  transform: rotate(90deg);
+}
+
+/* Варианты раздела: каждый пункт во всю ширину меню */
+.filter-section-body {
+  display: grid;
+}
+
+.filter-section-title {
+  font-weight: 600;
+}
+
+.filter-section-value {
+  color: var(--label-2);
+  white-space: nowrap;
+  text-align: right;
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+}
+
+.filter-section.is-open .filter-section-value {
+  color: var(--accent);
+}
+

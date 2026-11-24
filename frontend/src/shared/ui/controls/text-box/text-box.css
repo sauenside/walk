@@ -1,0 +1,27 @@
+/* Общее оформление однострочного и многострочного поля: фон, рамка, фокус, ошибка.
+   Своё у каждого — высота и отступы (Input), высота строки и растягивание (Textarea) */
+.text-box {
+  width: 100%;
+
+  display: block;
+
+  background: var(--fill-2);
+  border: 1px solid var(--fill-2);
+  border-radius: var(--radius-field);
+  outline: none;
+
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.text-box::placeholder {
+  color: var(--label-3);
+}
+
+.text-box:focus {
+  background: var(--window);
+  border-color: var(--accent);
+}
+
+.text-box.is-invalid {
+  border-color: var(--red);
+}

@@ -1,0 +1,72 @@
+.button {
+  font-weight: 500;
+  white-space: nowrap;
+
+  padding: 0px 15px;
+
+  display: grid;
+  gap: 5px;
+
+  /* Высота — строка 30px; рамка outline внутрь и размер не меняет */
+  grid-template-rows: 30px;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--window);
+  border-radius: var(--radius-pill);
+  outline: 1px solid var(--border);
+
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--fill-2);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  color: var(--label-3);
+}
+
+.button-primary {
+  color: #fff;
+
+  background: var(--accent);
+  outline: 1px solid var(--accent);
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.button-primary:disabled {
+  color: #fff;
+
+  background: var(--accent-border);
+  outline: 1px solid var(--accent-border);
+}
+
+.button-danger {
+  color: #fff;
+
+  background: var(--red);
+  outline: 1px solid var(--red);
+}
+
+.button-danger:hover:not(:disabled) {
+  background: var(--red-hover);
+}
+
+.button-sm {
+  font-size: 12px;
+
+  padding: 0px 10px;
+
+  grid-template-rows: 25px;
+}

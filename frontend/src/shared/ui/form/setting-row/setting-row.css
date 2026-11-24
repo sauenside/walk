@@ -1,0 +1,36 @@
+/* Строки без рамки вокруг, между ними — тонкая линия */
+.setting-list {
+  display: grid;
+}
+
+.setting-row {
+  padding: 15px 0px;
+
+  display: grid;
+  gap: 15px;
+
+  grid-template-columns: minmax(0px, 1fr) auto;
+  align-items: center;
+}
+
+.setting-row + .setting-row {
+  border-top: 1px solid var(--separator);
+}
+
+.setting-row-text {
+  display: grid;
+}
+
+.setting-row-label {
+  font-weight: 500;
+}
+
+.setting-row-hint {
+  color: var(--label-2);
+  font-size: 12px;
+}
+
+.setting-row.is-disabled .setting-row-label,
+.setting-row.is-disabled .setting-row-hint {
+  color: var(--label-3);
+}
